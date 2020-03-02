@@ -9,6 +9,8 @@ class User(db.Model):
     last_name = db.Column(db.String(64))
     journal_entries = db.relationship('JournalEntry', backref='user', lazy='dynamic')
 
+    # ideas for additional attributes: running/cardio (time); measurement of fitness (e.g. distance in a given time period); gym days (could break it down into body parts); yoga; tai chi; meditation; weight
+
     def __repr__(self):
         return '<User {} {}>'.format(self.first_name, self.last_name)
 
@@ -20,6 +22,16 @@ class User(db.Model):
         result_steps = max(just_the_steps)
         pretty_result = result_date.strftime("%A %d %B %Y")
         return "Your best day was {} with {} steps.".format(pretty_result, result_steps)
+
+    # method(s) to find the five-number summary 
+
+    # count total steps for the year/any given time period
+
+    # count total number of times the user has done a given activity (e.g. number of gym visits)
+
+    # method to find the most common words and/or phrases in the user's descriptions.
+
+    # method(s) to filter entries. Ideas: by month/year/day of the week
 
 class JournalEntry(db.Model):
     id = db.Column(db.Integer, primary_key=True)

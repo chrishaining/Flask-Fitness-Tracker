@@ -40,3 +40,25 @@ __Create HTML templates__
 * `mkdir app/templates`
 * `touch app/templates/base.html`
 * `touch app/templates/index.html`
+
+
+## Achievements
+* I managed to pass a Boolean value from an HTML form into the database. It doesn't seem like a very efficient way to do it, but it works. The boolean values are for the `yoga` and `running` attributes:
+```
+@app.route('/multi', methods=['POST'])
+def add_multi_entry():
+    steps = request.form['steps']
+    description = request.form['description']
+    if 'yoga' in request.form:
+        yoga = True
+    else: 
+        yoga = False
+    # running = request.form['running']
+    if 'running' in request.form:
+        running = True
+    else: 
+        running = False
+    newEntry = JournalEntry(steps=steps, description=description, yoga=yoga, running=running)
+    db.session.add(newEntry)
+    db.session.commit()
+    ```

@@ -94,6 +94,8 @@ class JournalEntry(db.Model):
     date = db.Column(db.Date, default=datetime.datetime.now())
     steps = db.Column(db.Integer)
     description = db.Column(db.Text())
+    yoga = db.Column(db.Boolean, default=False)
+    running = db.Column(db.Boolean, default=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __repr__(self):

@@ -48,3 +48,38 @@ def delete(entry_id):
     db.session.delete(entry)
     db.session.commit()
     return redirect('/manage')
+
+
+@app.route('/multi')
+def multi_entries():
+    entries = JournalEntry.query.all()
+    return render_template('multi.html', title="Manage Your Multi Entries", entries=entries)
+
+@app.route('/multi', methods=['POST'])
+def add_multi_entry():
+    steps = request.form['steps']
+    description = request.form['description']
+    if 'yoga' in request.form:
+        yoga = True
+    else: 
+        yoga = False
+    # running = request.form['running']
+    if 'running' in request.form:
+        running = True
+    else: 
+        running = False
+    newEntry = JournalEntry(steps=steps, description=description, yoga=yoga, running=running)
+    db.session.add(newEntry)
+    db.session.commit()
+    return redirect('/multi')
+
+# @app.route('/multi', methods=['POST'])
+# def find_boolean():
+    # steps = request.form['steps']
+    # description = request.form['description']
+    # checked = 'yoga' in request.form
+    # yoga = request.form['yoga']
+    # running = request.form['running']
+    # newEntry = JournalEntry(steps=steps, description=description)
+    # return render_template('multi.html', title="Manage Your Multi Entries", checked=checked)
+    # return redirect('/multi')

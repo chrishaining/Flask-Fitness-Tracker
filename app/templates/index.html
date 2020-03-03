@@ -12,6 +12,9 @@
                 <th>Date</th>
                 <th>Steps</th>
                 <th>Description</th>
+                <th>Yoga</th>
+                <th>Running</th>
+
             </thead>
             <tbody>
                 {% for entry in entries%}
@@ -20,6 +23,9 @@
                     <td>{{entry.date}}</td>
                     <td>{{entry.steps}}</td>
                     <td>{{entry.description}}</td>
+                    <td>{{entry.yoga}}</td>
+                    <td>{{entry.running}}</td>
+
                 </tr>
                 {% endfor %}
             </tbody>

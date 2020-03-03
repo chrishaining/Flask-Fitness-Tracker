@@ -92,3 +92,24 @@ def add_multi_entry():
     # newEntry = JournalEntry(steps=steps, description=description)
     # return render_template('multi.html', title="Manage Your Multi Entries", checked=checked)
     # return redirect('/multi')
+
+@app.route('/multi/<int:entry_id>/edit', methods=['POST'])
+def edit_multi(entry_id):
+    new_steps = request.form.get("new_steps")
+    new_description = request.form.get("new_description")
+    entry_id = request.form.get("entry_id")
+    if 'yoga' in request.form:
+        yoga = True
+    else: 
+        yoga = False
+    if 'running' in request.form:
+        running = True
+    else: 
+        running = False
+    entry = JournalEntry.query.filter_by(id=entry_id).first()
+    entry.steps = new_steps
+    entry.description = new_description
+    entry.yoga = yoga
+    entry.running = running
+    db.session.commit()
+    return redirect('/multi')

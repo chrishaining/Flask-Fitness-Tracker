@@ -45,7 +45,7 @@
         <h1>Edit</h1>
     </div>
     {% for entry in entries %}
-    <form method="POST" action="/manage/{{entry.id}}/edit">
+    <form method="POST" action="/multi/{{entry.id}}/edit">
         <div class="form-group">
             <input class="form-control" type="hidden" value="{{entry.id}}" name="entry_id">
             <label for="steps">Steps</label>

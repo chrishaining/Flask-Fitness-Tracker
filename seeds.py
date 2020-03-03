@@ -27,5 +27,8 @@ entries = JournalEntry.query.all()
 print(entries)
 entry_user = JournalEntry.query.get(1).user
 print(entry_user.first_name)
-top = user1.find_bestday()
+top = user1.find_best_day()
 print(top) #expect 25311
+
+user_iqr = user1.find_iqr()
+print(user_iqr)

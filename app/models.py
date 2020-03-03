@@ -2,7 +2,7 @@ from app import db
 import datetime
 from operator import itemgetter
 
-# 
+# import statistics modules
 from scipy import stats
 import numpy as np 
 
@@ -26,6 +26,13 @@ class User(db.Model):
         result_steps = max(just_the_steps)
         pretty_result = result_date.strftime("%A %d %B %Y")
         return "Your best day was {} with {} steps.".format(pretty_result, result_steps)
+
+
+    # method to find iqr  
+    def find_iqr(self):
+        steps_list = [entry.steps for entry in self.journal_entries]
+        iqr = stats.iqr(steps_list, interpolation = 'midpoint') 
+        return "The IQR is {}.".format(iqr)
 
     # method(s) to find the five-number summary 
 

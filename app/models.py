@@ -35,8 +35,19 @@ class User(db.Model):
         return "The IQR is {}.".format(iqr)
 
     # method(s) to find the five-number summary 
+    def create_five_figure_summary(self):
+        steps_list = [entry.steps for entry in self.journal_entries]
+        percentiles = np.percentile(steps_list, [25, 50, 75]) # creates LQ, median and UQ. These could be done as separate variables - I just wanted to try it this way
+        min, max = np.min(steps_list), np.max(steps_list)
+        iqr = stats.iqr(steps_list, interpolation = 'midpoint') 
+        standardised_iqr = round(iqr / percentiles[1], 2)
+        return "Min value: {min}\nLQ: {lq}\nMedian: {median}\nUQ: {uq}\nMax value: {max}\nInterQuartile Range: {iqr}\nStandardised InterQuartile Range: {standardised_iqr}".format(min=min, lq=percentiles[0], median=percentiles[1], uq=percentiles[2], max=max, iqr=iqr, standardised_iqr=standardised_iqr)
 
-    # count total steps for the year/any given time period
+    # count total steps for the year/any given time period. Start by counting all steps for all entries
+    def count_total_steps(self):
+        steps_list = [entry.steps for entry in self.journal_entries]
+        total_steps = np.sum(steps_list)
+        return "Total steps: {}".format(total_steps)
 
     # count total number of times the user has done a given activity (e.g. number of gym visits)
 

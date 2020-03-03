@@ -32,3 +32,7 @@ print(top) #expect 25311
 
 user_iqr = user1.find_iqr()
 print(user_iqr)
+user_summary = user1.create_five_figure_summary()
+print(user_summary)
+total_steps = user1.count_total_steps()
+print(total_steps)

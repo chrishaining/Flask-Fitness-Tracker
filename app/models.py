@@ -67,7 +67,7 @@ class User(db.Model):
     # find variance in steps
     def find_steps_variance(self):
         steps_list = [entry.steps for entry in self.journal_entries]
-        variance = np.var(steps_list)
+        variance = round(np.var(steps_list), 2)
         return "Variance of steps: {}".format(variance)
 
     # variance is giving what seems a crazy answer (9,384,542.5), so I want to try to work it out step by step. 

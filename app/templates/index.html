@@ -39,24 +39,50 @@
     </div>
 
     <div class="row">
-        <h2>{{steps_best_day}}</h2>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <th></th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <h2>{{steps_best_day}}</h2>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h2>{{total_steps}}</h2>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h2>{{steps_variance}}</h2>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h2>{{steps_standard_deviation}}</h2>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h2>Summary</h2>
+                        <ul>
+                            <li>Minimum: {{steps_summary[0]}}</li>
+                            <li>Lower Quartile: {{steps_summary[1]}}</li>
+                            <li>Median: {{steps_summary[2]}}</li>
+                            <li>Upper Quartile: {{steps_summary[3]}}</li>
+                            <li>Maximum: {{steps_summary[4]}}</li>
+                            <li>Interquartile Range: {{steps_summary[5]}}</li>
+                            <li>Standardised Interquartile Range: {{steps_summary[6]}}</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
-    <div class="row">
-        <h2>{{total_steps}}</h2>
-    </div>
 
-    <div class="row">
-        <h2>{{steps_summary}}</h2>
-    </div>
-
-    <div class="row">
-        <h2>{{steps_variance}}</h2>
-    </div>
-
-    <div class="row">
-        <h2>{{steps_standard_deviation}}</h2>
-    </div>
 
 </div>
 {% endblock %}

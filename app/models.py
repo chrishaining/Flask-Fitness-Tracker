@@ -107,3 +107,7 @@ class JournalEntry(db.Model):
     def __repr__(self):
         entry_date = self.date.strftime("%A %d %B %Y")
         return '<Journal Entry {}>'.format(entry_date)
+
+    def show_pretty_date(self):
+        entry_date = self.date.strftime("%A %d %B %Y")
+        return entry_date

@@ -20,7 +20,7 @@
                 {% for entry in entries%}
                 <tr>
                     <td>{{entry.id}}</td>
-                    <td>{{entry.date}}</td>
+                    <td>{{entry.show_pretty_date()}}</td>
                     <td>{{entry.steps}}</td>
                     <td>{{entry.description}}</td>
 

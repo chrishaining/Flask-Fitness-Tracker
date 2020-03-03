@@ -23,9 +23,15 @@
                     <td>{{entry.date}}</td>
                     <td>{{entry.steps}}</td>
                     <td>{{entry.description}}</td>
-                    <td>{{entry.yoga}}</td>
-                    <td>{{entry.running}}</td>
 
+                    <td>
+                        {% if entry.yoga %} <span> &#9989;</span> {% else%}
+                        <span>&#10060</span> {% endif %}
+                    </td>
+                    <td>
+                        {% if entry.running %} <span> &#9989;</span> {% else%}
+                        <span>&#10060</span> {% endif %}
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>

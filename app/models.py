@@ -97,7 +97,7 @@ class User(db.Model):
 
 class JournalEntry(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.Date, default=datetime.datetime.now())
+    date = db.Column(db.Date, default=datetime.datetime.now(), unique=True, index=True)
     steps = db.Column(db.Integer)
     description = db.Column(db.Text())
     yoga = db.Column(db.Boolean, default=False)

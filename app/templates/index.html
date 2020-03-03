@@ -17,7 +17,7 @@
 
             </thead>
             <tbody>
-                {% for entry in entries%}
+                {% for entry in sorted_entries%}
                 <tr>
                     <td>{{entry.id}}</td>
                     <td>{{entry.show_pretty_date()}}</td>

@@ -42,3 +42,5 @@ deviation = user1.find_steps_standard_deviation()
 print(deviation)
 manual_variance = user1.manual_steps_variance()
 print(manual_variance)
+
+print(user1.sort_by_date())

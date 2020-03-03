@@ -40,14 +40,23 @@ class User(db.Model):
         iqr = stats.iqr(steps_list, interpolation = 'midpoint') 
         return "The IQR is {}.".format(iqr)
 
-    # method(s) to find the five-number summary. Extension: return the values in a list, so I can separate them in rendering (e.g. to put into a table)
+    # method(s) to find the five-number summary. Extension: return the values in a list, so I can separate them in rendering (e.g. to put into a table). This might require tuples or a dictionary, because I want it to be easy for me and others to understand which number is which.
     def create_five_figure_summary_for_steps(self):
         steps_list = [entry.steps for entry in self.journal_entries]
         percentiles = np.percentile(steps_list, [25, 50, 75]) # creates LQ, median and UQ. These could be done as separate variables - I just wanted to try it this way
         min, max = np.min(steps_list), np.max(steps_list)
         iqr = stats.iqr(steps_list, interpolation = 'midpoint') 
         standardised_iqr = round(iqr / percentiles[1], 2)
-        return "Min value: {min}\nLQ: {lq}\nMedian: {median}\nUQ: {uq}\nMax value: {max}\nInterQuartile Range: {iqr}\nStandardised InterQuartile Range: {standardised_iqr}".format(min=min, lq=percentiles[0], median=percentiles[1], uq=percentiles[2], max=max, iqr=iqr, standardised_iqr=standardised_iqr)
+        summary_list = []
+        summary_list.append(min)
+        summary_list.append(percentiles[0])
+        summary_list.append(percentiles[1])
+        summary_list.append(percentiles[2])
+        summary_list.append(max)
+        summary_list.append(iqr)
+        summary_list.append(standardised_iqr)
+        return summary_list
+        # return "Min value: {min}\nLQ: {lq}\nMedian: {median}\nUQ: {uq}\nMax value: {max}\nInterQuartile Range: {iqr}\nStandardised InterQuartile Range: {standardised_iqr}".format(min=min, lq=percentiles[0], median=percentiles[1], uq=percentiles[2], max=max, iqr=iqr, standardised_iqr=standardised_iqr)
 
     # count total steps for the year/any given time period. Start by counting all steps for all entries
     def count_total_steps(self):
@@ -94,6 +103,13 @@ class User(db.Model):
     # method to find the most common words and/or phrases in the user's descriptions.
 
     # method(s) to filter entries. Ideas: by month/year/day of the week
+
+
+    # method to sort the entries. I could make separate methods for each sort (e.g. def sort_by_date), or I could have a generic sort method that takes an argument (e.g. def sort(self, attribute)).
+    def sort_by_date(self):
+        sorted_list = sorted(self.journal_entries, key=lambda journalEntry: journalEntry.date)
+        return sorted_list
+        
 
 class JournalEntry(db.Model):
     id = db.Column(db.Integer, primary_key=True)

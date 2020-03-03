@@ -8,12 +8,13 @@ def index():
     greeting = "WooooooW"
     user = User.query.get(1)
     entries = JournalEntry.query.all()
+    sorted_entries = user.sort_by_date()
     steps_best_day = user.find_best_day()
     total_steps = user.count_total_steps()
     steps_summary = user.create_five_figure_summary_for_steps()
     steps_variance = user.find_steps_variance()
     steps_standard_deviation = user.find_steps_standard_deviation()
-    return render_template('index.html', title="Home", greeting=greeting, user=user, entries=entries, steps_best_day=steps_best_day, total_steps=total_steps, steps_summary=steps_summary, steps_variance=steps_variance, steps_standard_deviation=steps_standard_deviation)
+    return render_template('index.html', title="Home", greeting=greeting, user=user, entries=entries, steps_best_day=steps_best_day, total_steps=total_steps, steps_summary=steps_summary, steps_variance=steps_variance, steps_standard_deviation=steps_standard_deviation, sorted_entries=sorted_entries)
 
 @app.route('/manage')
 def manage_entries():

@@ -28,6 +28,12 @@ class User(db.Model):
         return "Your best day was {} with {} steps.".format(pretty_result, result_steps)
 
 
+    # method to display the description for best day for steps
+
+    # method to identify the worst day for steps
+
+    # method to display the description for worst day for steps
+
     # method to find iqr  
     def find_iqr(self):
         steps_list = [entry.steps for entry in self.journal_entries]

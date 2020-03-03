@@ -25,7 +25,16 @@ def add_entry():
     # date = request.form['date']
     steps = request.form['steps']
     description = request.form['description']
-    newEntry = JournalEntry(steps=steps, description=description)
+    if 'yoga' in request.form:
+        yoga = True
+    else: 
+        yoga = False
+    # running = request.form['running']
+    if 'running' in request.form:
+        running = True
+    else: 
+        running = False
+    newEntry = JournalEntry(steps=steps, description=description, yoga=yoga, running=running)
     db.session.add(newEntry)
     db.session.commit()
     return redirect('/manage')

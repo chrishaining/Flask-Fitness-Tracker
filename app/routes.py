@@ -17,7 +17,8 @@ def index():
 
 @app.route('/manage')
 def manage_entries():
-    return render_template('manage.html', title="Manage Your Entries")
+    entries = JournalEntry.query.all()
+    return render_template('manage.html', title="Manage Your Entries", entries=entries)
 
 @app.route('/manage', methods=['POST'])
 def add_entry():
@@ -26,5 +27,17 @@ def add_entry():
     description = request.form['description']
     newEntry = JournalEntry(steps=steps, description=description)
     db.session.add(newEntry)
+    db.session.commit()
+    return redirect('/manage')
+
+
+@app.route('/manage/<int:entry_id>/edit', methods=['POST'])
+def edit(entry_id):
+    new_steps = request.form.get("new_steps")
+    new_description = request.form.get("new_description")
+    entry_id = request.form.get("entry_id")
+    entry = JournalEntry.query.filter_by(id=entry_id).first()
+    entry.steps = new_steps
+    entry.description = new_description
     db.session.commit()
     return redirect('/manage')

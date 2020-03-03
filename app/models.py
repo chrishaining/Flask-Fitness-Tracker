@@ -2,6 +2,10 @@ from app import db
 import datetime
 from operator import itemgetter
 
+# 
+from scipy import stats
+import numpy as np 
+
 # create a user class
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)

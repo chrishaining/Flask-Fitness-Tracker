@@ -41,3 +41,10 @@ def edit(entry_id):
     entry.description = new_description
     db.session.commit()
     return redirect('/manage')
+
+@app.route('/manage/<int:entry_id>/delete', methods=['POST'])
+def delete(entry_id):
+    entry = JournalEntry.query.get(entry_id)
+    db.session.delete(entry)
+    db.session.commit()
+    return redirect('/manage')

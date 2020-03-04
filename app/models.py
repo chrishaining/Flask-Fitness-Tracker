@@ -1,6 +1,7 @@
 from app import db
 import datetime
 from operator import itemgetter
+import numpy as np
 
 # import statistics modules
 from scipy import stats
@@ -107,9 +108,21 @@ class User(db.Model):
 
     # method to sort the entries. I could make separate methods for each sort (e.g. def sort_by_date), or I could have a generic sort method that takes an argument (e.g. def sort(self, attribute)).
     def sort_by_date(self):
-        sorted_list = sorted(self.journal_entries, key=lambda journalEntry: journalEntry.date)
-        return sorted_list
-        
+        sorted_list = sorted(self.journal_entries, key=lambda journalEntry: journalEntry.date, reverse=True)
+        self.journal_entries = sorted_list
+        return self.journal_entries
+
+    # def numpy_sort_by_date(self):
+    #     sorted = np.sort(self.journal_entries, order=date)
+    #     return sorted
+    
+    # def take_date(self):
+    #     for entry in self.journal_entries:
+    #         return entry.date
+
+    # def sort_by_date_two(self):
+    #     sorted = self.sort(self.journal_entries, order=self.take_date)
+    #     return sorted
 
 class JournalEntry(db.Model):
     id = db.Column(db.Integer, primary_key=True)

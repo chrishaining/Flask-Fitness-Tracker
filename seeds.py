@@ -43,4 +43,8 @@ print(deviation)
 manual_variance = user1.manual_steps_variance()
 print(manual_variance)
 
-print(user1.sort_by_date())
+# sorty = user1.sort_by_date()
+# print(sorty[0])
+
+# sorto = user1.sort_by_date_two()
+# print(sorto)

@@ -4,7 +4,7 @@ from app.models import User, JournalEntry, datetime
 JournalEntry.query.delete()
 User.query.delete()
 
-user1 = User(first_name="Qazi", last_name="Raytnau")
+user1 = User(first_name="Quazi", last_name="Raytnau")
 db.session.add(user1)
 db.session.commit()
 users = User.query.all()

@@ -1,3 +1,84 @@
 .row {
-    margin: 10px
+    margin: 20px;
+}
+
+nav {
+    background-color: #5DA2D5;
+}
+
+nav a {
+    color: white;
+    padding: 15px
+}
+
+nav a:hover {
+    color: #F78888;
+    text-decoration: none;
+}
+
+.navbar-toggler-icon {
+    color: white;
+    padding-left: 20px;
+    font-size: 200%
+}
+
+.navbar-brand {
+    color: white
+}
+
+.navbar-nav {
+    list-style-type: none;
+}
+
+
+/* forms */
+
+form {
+    background-color: #90CCF4;
+    padding: 20px;
+    margin-top: 20px;
+    border: solid black 2px;
+    border-radius: 5px;
+}
+
+input,
+textarea {
+    /* margin: 20px; */
+    padding: 10px
+}
+
+
+/* .form-control {
+    margin: 20px;
+    margin-right: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+} */
+
+label {
+    color: black
+}
+
+.btn.btn-link {
+    font-size: 2em;
+    font-weight: bolder;
+    color: black
+}
+
+
+/* modals */
+
+.modal-header {
+    background-color: #5DA2D5
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: #ECECEC
+}
+
+.modal-title {
+    color: black
 }

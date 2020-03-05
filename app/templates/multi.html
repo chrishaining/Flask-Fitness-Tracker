@@ -47,7 +47,10 @@
     {% for entry in entries %}
     <form method="POST" action="/multi/{{entry.id}}/edit">
         <div class="form-group">
-            <input class="form-control" type="hidden" value="{{entry.id}}" name="entry_id">
+            <label for="id">ID</label>
+            <input class="form-control" type="text" value="{{entry.id}}" name="entry_id" readonly>
+            <label for="date">Date</label>
+            <input class="form-control" type="text" value="{{entry.show_pretty_date()}}" name="entry_date" readonly>
             <label for="steps">Steps</label>
             <input class="form-control" value="{{entry.steps}}" name="new_steps" placeholder={{entry.steps}}>
             <label for="description">Description</label>

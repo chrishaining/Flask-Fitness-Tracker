@@ -2,6 +2,7 @@ from app import app, db
 from app.models import User, JournalEntry
 from flask import render_template, request, redirect
 import random
+from datetime import datetime
 
 @app.route('/')
 def index():
@@ -67,6 +68,8 @@ def multi_entries():
 
 @app.route('/multi', methods=['POST'])
 def add_multi_entry():
+    raw_date = request.form['date']
+    date = datetime.strptime(raw_date, "%Y-%m-%d")
     steps = request.form['steps']
     description = request.form['description']
     if 'yoga' in request.form:
@@ -78,7 +81,7 @@ def add_multi_entry():
         running = True
     else: 
         running = False
-    newEntry = JournalEntry(steps=steps, description=description, yoga=yoga, running=running)
+    newEntry = JournalEntry(date=date, steps=steps, description=description, yoga=yoga, running=running)
     db.session.add(newEntry)
     db.session.commit()
     return redirect('/multi')
@@ -107,10 +110,22 @@ def edit_multi(entry_id):
         running = True
     else: 
         running = False
+
+    if 'strength_training' in request.form:
+        strength_training = True
+    else: 
+        strength_training = False
+
+    if 'tai_chi' in request.form:
+        tai_chi = True
+    else: 
+        tai_chi = False
     entry = JournalEntry.query.filter_by(id=entry_id).first()
     entry.steps = new_steps
     entry.description = new_description
     entry.yoga = yoga
     entry.running = running
+    entry.strength_training = running
+    entry.tai_chi = running
     db.session.commit()
     return redirect('/multi')

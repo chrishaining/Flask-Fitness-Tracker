@@ -11,7 +11,7 @@ users = User.query.all()
 
 print(user1)
 
-journal_entry1 = JournalEntry(steps=17514, description="I felt really tired today.", user=user1)
+journal_entry1 = JournalEntry(date=datetime.datetime(2020, 3, 2), steps=17514, description="I felt really tired today.", user=user1)
 journal_entry2 = JournalEntry(date=datetime.datetime(2020, 3, 1), steps=19000, description="I felt really fine today.", user=user1)
 journal_entry3 = JournalEntry(date=datetime.datetime(2020, 2, 29), steps=18523, description="Oh dear.", user=user1)
 journal_entry4 = JournalEntry(date=datetime.datetime(2020, 2, 28), steps=25311, description="I felt really amazing today.", user=user1)

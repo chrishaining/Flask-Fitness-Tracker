@@ -16,6 +16,8 @@
         <div class="col-sm-3 add-form">
             <form action="/multi" method="POST">
                 <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="date" class="form-control" name="date" id="date">
                     <label for="steps">Steps</label>
                     <input type="number" class="form-control" name="steps" id="steps" placeholder="Add the number of steps">
                     <label for="description">Description</label>
@@ -30,6 +32,14 @@
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" name="running" id="running" value="running">
                         <label class="form-check-label" for="running">Running</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="strength_training" id="strength_training" value="strength_training">
+                        <label class="form-check-label" for="strength_training">Strength Training</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="tai_chi" id="tai_chi" value="tai_chi">
+                        <label class="form-check-label" for="tai_chi">Tai Chi</label>
                     </div>
                 </div>
 
@@ -64,6 +74,14 @@
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox" name="running" id="running" value="{{entry.running}}" {% if entry.running %} checked {% endif %}>
                 <label class="form-check-label" for="running">Running</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="strength_training" id="strength_training" value="{{entry.strength_training}}" {% if entry.strength_training %} checked {% endif %}>
+                <label class="form-check-label" for="strength_training">Strength Training</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="tai_chi" id="tai_chi" value="{{entry.tai_chi}}" {% if entry.tai_chi %} checked {% endif %}>
+                <label class="form-check-label" for="tai_chi">Tai Chi</label>
             </div>
         </div>
         <button type="submit" class="btn btn-primary" value="Edit ">Submit changes</button>

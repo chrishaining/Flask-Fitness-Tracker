@@ -131,6 +131,9 @@ class JournalEntry(db.Model):
     description = db.Column(db.Text())
     yoga = db.Column(db.Boolean, default=False)
     running = db.Column(db.Boolean, default=False)
+    strength_training = db.Column(db.Boolean, default=False)
+    tai_chi = db.Column(db.Boolean, default=False)
+
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __repr__(self):

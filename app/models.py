@@ -100,6 +100,26 @@ class User(db.Model):
         return "Standard deviation of steps: {}".format(sd)
 
     # count total number of times the user has done a given activity (e.g. number of gym visits)
+    def count_total_yoga_sessions(self):
+        yoga_list = [entry.yoga for entry in self.journal_entries if entry.yoga == True]
+        number_of_yoga_sessions = len(yoga_list)
+        return "Total yoga sessions: {}".format(number_of_yoga_sessions)
+
+    def count_total_runs(self):
+        run_list = [entry.running for entry in self.journal_entries if entry.running == True]
+        number_of_runs = len(run_list)
+        return "Total running sessions: {}".format(number_of_runs)
+
+    def count_total_strength_training_sessions(self):
+        strength_list = [entry.strength_training for entry in self.journal_entries if entry.strength_training == True]
+        number_of_strength_training_sessions = len(strength_list)
+        return "Total strength training sessions: {}".format(number_of_strength_training_sessions)
+
+
+    def count_total_tai_chi_sessions(self):
+        tai_chi_list = [entry.tai_chi for entry in self.journal_entries if entry.tai_chi == True]
+        number_of_tai_chi_sessions = len(tai_chi_list)
+        return "Total tai chi sessions: {}".format(number_of_tai_chi_sessions)
 
     # method to find the most common words and/or phrases in the user's descriptions.
 

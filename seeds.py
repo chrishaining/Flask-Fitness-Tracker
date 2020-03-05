@@ -48,3 +48,4 @@ print(manual_variance)
 
 # sorto = user1.sort_by_date_two()
 # print(sorto)
+print(user1.count_total_yoga_sessions)

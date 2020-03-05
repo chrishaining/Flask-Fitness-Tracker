@@ -184,4 +184,7 @@ def show_flask_table():
     user = User.query.get(1)
     entries = JournalEntry.query.all()
     table = ItemTable(entries)
+
+    table.sort_url('steps')
+
     return render_template('flask_table.html', title="Flask Table", user=user, entries=entries, table=table) 

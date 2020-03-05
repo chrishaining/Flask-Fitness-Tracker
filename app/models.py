@@ -5,6 +5,7 @@ import numpy as np
 
 # import Flask Tables
 from flask_table import Table, Col
+from flask import url_for
 
 # import statistics modules
 from scipy import stats
@@ -175,6 +176,7 @@ class JournalEntry(db.Model):
 # Create a Table class (experimental)
 # Declare your table
 class ItemTable(Table):
+    allow_sort = True
     id = Col('Id')
     date = Col('Date')
     steps = Col('Steps')
@@ -183,6 +185,15 @@ class ItemTable(Table):
     running = Col('Running')
     strength_training = Col('StrengthTraining')
     tai_chi = Col('TaiChi')
+
+    def sort_url(self, col_key, reverse=False):
+        if reverse:
+            direction =  'desc'
+        else:
+            direction = 'asc'
+        return url_for('show_flask_table', sort=col_key, direction=direction)
+        # return url_for('index', sort=col_key, direction=direction)
+
 
 # Get some objects
 # class Item(object):

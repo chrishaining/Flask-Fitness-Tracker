@@ -23,6 +23,9 @@
                         <div class="modal-body">
                             <form action="/manage" method="POST">
                                 <div class="form-group">
+                                    <label for="date">Date</label>
+                                    <input type="date" class="form-control" name="date" id="date">
+                                    <label for="steps">Steps</label>
                                     <label for="steps">Steps</label>
                                     <input type="number" class="form-control" name="steps" id="steps" placeholder="Add the number of steps">
                                     <label for="description">Description</label>
@@ -37,12 +40,22 @@
                                         <input class="form-check-input" type="checkbox" name="running" id="running" value="running">
                                         <label class="form-check-label" for="running">Running</label>
                                     </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" name="strength_training" id="strength_training" value="strength_training">
+                                        <label class="form-check-label" for="strength_training">Strength
+                                            Training</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" name="tai_chi" id="tai_chi" value="tai_chi">
+                                        <label class="form-check-label" for="tai_chi">Tai Chi</label>
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary" value="Add">Add</button>
-                                </div>
+
                             </form>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -68,7 +81,7 @@
                     <!-- edit -->
                     <td>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myEditModal{{entry.id}}">Edit
-                                </button>
+                    </button>
                         <div class="modal fade" id="myEditModal{{entry.id}}" tabindex="-1" role="dialog" aria-labelledby="myEditModalLabel{{entry.id}}" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -80,17 +93,44 @@
                                     <div class="modal-body">
                                         <form method="POST" action="/manage/{{entry.id}}/edit">
                                             <div class="form-group">
-                                                <input class="form-control" type="hidden" value="{{entry.id}}" name="entry_id">
+
+                                                <label for="id">ID</label>
+                                                <input class="form-control" type="text" value="{{entry.id}}" name="entry_id" readonly>
+                                                <label for="date">Date</label>
+                                                <input class="form-control" type="text" value="{{entry.show_pretty_date()}}" name="entry_date" readonly>
+
                                                 <label for="steps">Steps</label>
                                                 <input class="form-control" value="{{entry.steps}}" name="new_steps" placeholder={{entry.steps}}>
                                                 <label for="description">Description</label>
                                                 <textarea class="form-control" value="{{entry.description}}" name="new_description" rows="4">{{entry.description}}</textarea>
                                             </div>
-                                            <div class="modal-footer">
-                                                <button type="submit" class="btn btn-primary" value="Edit ">Submit                                                    changes</button>
+                                            <div class="form-group">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" name="yoga" id="yoga" value="{{entry.yoga}}" {% if entry.yoga %} checked {% endif %}>
+                                                    <label class="form-check-label" for="yoga">Yoga</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" name="running" id="running" value="{{entry.running}}" {% if entry.running %} checked {% endif %}>
+                                                    <label class="form-check-label" for="running">Running</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" name="strength_training" id="strength_training" value="{{entry.strength_training}}" {% if entry.strength_training %} checked {% endif %}>
+                                                    <label class="form-check-label" for="strength_training">Strength
+                                                    Training</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" name="tai_chi" id="tai_chi" value="{{entry.tai_chi}}" {% if entry.tai_chi %} checked {% endif %}>
+                                                    <label class="form-check-label" for="tai_chi">Tai Chi</label>
+                                                </div>
                                             </div>
+
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary" value="Edit ">Submit
+                                                changes</button>
+
                                         </form>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -100,7 +140,7 @@
                     <!-- delete an entry  -->
                     <td>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myDeleteModal{{entry.id}}">Delete
-                                            </button>
+    </button>
                         <div class="modal fade" id="myDeleteModal{{entry.id}}" tabindex="-1" role="dialog" aria-labelledby="myDeleteModalLabel{{entry.id}}" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -115,7 +155,7 @@
                                             <form action="{{url_for( 'delete', entry_id=entry.id)}}" method="POST">
 
                                                 <button type="submit" class="btn btn-primary" value="Delete">Delete
-                                                                    </button>
+                            </button>
                                             </form>
                                         </div>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">No, take me back</button>
@@ -132,4 +172,4 @@
     </div>
 
 </div>
-{% endblock %}
+{% endblock %}å

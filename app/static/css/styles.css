@@ -2,8 +2,11 @@
     margin: 20px;
 }
 
+
+/* nav */
+
 nav {
-    background-color: #5DA2D5;
+    background-color: #123C69;
 }
 
 nav a {
@@ -12,7 +15,7 @@ nav a {
 }
 
 nav a:hover {
-    color: #F78888;
+    color: #AC3B61;
     text-decoration: none;
 }
 
@@ -81,4 +84,25 @@ label {
 
 .modal-title {
     color: black
+}
+
+button {
+    margin: 10px;
+    background-color: #AC3B61
+}
+
+.btn.btn-secondary {
+    background-color: #AC3B61
+}
+
+.btn.btn-primary {
+    background-color: #AC3B61
+}
+
+button.btn.btn-primary:hover {
+    background-color: silver
+}
+
+button.btn.btn-secondary:hover {
+    background-color: silver
 }

@@ -28,7 +28,8 @@ def manage_entries():
 
 @app.route('/manage', methods=['POST'])
 def add_entry():
-    # date = request.form['date']
+    raw_date = request.form['date']
+    date = datetime.strptime(raw_date, "%Y-%m-%d")
     steps = request.form['steps']
     description = request.form['description']
     if 'yoga' in request.form:
@@ -40,10 +41,19 @@ def add_entry():
         running = True
     else: 
         running = False
-    newEntry = JournalEntry(steps=steps, description=description, yoga=yoga, running=running)
+    if 'strength_training' in request.form:
+        strength_training = True
+    else: 
+        strength_training = False
+    if 'tai_chi' in request.form:
+        tai_chi = True
+    else: 
+        tai_chi = False
+    newEntry = JournalEntry(date=date, steps=steps, description=description, yoga=yoga, running=running, strength_training=strength_training, tai_chi=tai_chi)
     db.session.add(newEntry)
     db.session.commit()
     return redirect('/manage')
+
 
 
 @app.route('/manage/<int:entry_id>/edit', methods=['POST'])
@@ -51,11 +61,34 @@ def edit(entry_id):
     new_steps = request.form.get("new_steps")
     new_description = request.form.get("new_description")
     entry_id = request.form.get("entry_id")
+    if 'yoga' in request.form:
+        yoga = True
+    else: 
+        yoga = False
+    if 'running' in request.form:
+        running = True
+    else: 
+        running = False
+
+    if 'strength_training' in request.form:
+        strength_training = True
+    else: 
+        strength_training = False
+
+    if 'tai_chi' in request.form:
+        tai_chi = True
+    else: 
+        tai_chi = False
     entry = JournalEntry.query.filter_by(id=entry_id).first()
     entry.steps = new_steps
     entry.description = new_description
+    entry.yoga = yoga
+    entry.running = running
+    entry.strength_training = running
+    entry.tai_chi = running
     db.session.commit()
     return redirect('/manage')
+
 
 @app.route('/manage/<int:entry_id>/delete', methods=['POST'])
 def delete(entry_id):

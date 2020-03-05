@@ -6,7 +6,7 @@ from datetime import datetime
 
 @app.route('/')
 def index():
-    greeting = "WooooooW"
+    greeting = "Welcome"
     user = User.query.get(1)
     entries = JournalEntry.query.all()
     sorted_entries = user.sort_by_date()

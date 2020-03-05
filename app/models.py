@@ -26,7 +26,7 @@ class User(db.Model):
         result_date = max(steps_list, key=itemgetter(1))[0]
         result_steps = max(just_the_steps)
         pretty_result = result_date.strftime("%A %d %B %Y")
-        return "Your best day was {} with {} steps.".format(pretty_result, result_steps)
+        return "Your best day was {} with {:,} steps.".format(pretty_result, result_steps)
 
 
     # method to display the description for best day for steps
@@ -39,7 +39,7 @@ class User(db.Model):
     def find_iqr(self):
         steps_list = [entry.steps for entry in self.journal_entries]
         iqr = stats.iqr(steps_list, interpolation = 'midpoint') 
-        return "The IQR is {}.".format(iqr)
+        return "The IQR is {:,}.".format(iqr)
 
     # method(s) to find the five-number summary. Extension: return the values in a list, so I can separate them in rendering (e.g. to put into a table). This might require tuples or a dictionary, because I want it to be easy for me and others to understand which number is which.
     def create_five_figure_summary_for_steps(self):
@@ -49,13 +49,15 @@ class User(db.Model):
         iqr = stats.iqr(steps_list, interpolation = 'midpoint') 
         standardised_iqr = round(iqr / percentiles[1], 2)
         summary_list = []
-        summary_list.append(min)
-        summary_list.append(percentiles[0])
-        summary_list.append(percentiles[1])
-        summary_list.append(percentiles[2])
-        summary_list.append(max)
-        summary_list.append(iqr)
+        summary_list.append(format(min, ","))
+        summary_list.append(format(percentiles[0], ","))
+        summary_list.append(format(percentiles[1], ","))
+        summary_list.append(format(percentiles[2], ","))
+        summary_list.append(format(max, ","))
+        summary_list.append(format(iqr, ","))
         summary_list.append(standardised_iqr)
+        # for number in summary_list:
+        #     number = format(number, ",")
         return summary_list
         # return "Min value: {min}\nLQ: {lq}\nMedian: {median}\nUQ: {uq}\nMax value: {max}\nInterQuartile Range: {iqr}\nStandardised InterQuartile Range: {standardised_iqr}".format(min=min, lq=percentiles[0], median=percentiles[1], uq=percentiles[2], max=max, iqr=iqr, standardised_iqr=standardised_iqr)
 
@@ -63,20 +65,20 @@ class User(db.Model):
     def count_total_steps(self):
         steps_list = [entry.steps for entry in self.journal_entries]
         total_steps = np.sum(steps_list)
-        return "Total steps: {}".format(total_steps)
+        return "Total steps: {:,}".format(total_steps)
 
     # find variance in steps
     def find_steps_variance(self):
         steps_list = [entry.steps for entry in self.journal_entries]
         variance = round(np.var(steps_list), 2)
-        return "Variance of steps: {}".format(variance)
+        return "Variance of steps: {:,}".format(variance)
 
     # variance is giving what seems a crazy answer (9,384,542.5), so I want to try to work it out step by step. 
     # Find the mean 
     def find_mean_steps(self):
         steps_list = [entry.steps for entry in self.journal_entries]
         mean = np.mean(steps_list)
-        return "Mean: {}".format(mean)
+        return "Mean: {:,}".format(mean)
 
     # mean is working. So, for each number: subtract the Mean and square the result (the squared difference). Then work out the average of those squared differences. Well, it works out the same. I guess I just hadn't thought enough about what variance is.
     def manual_steps_variance(self):
@@ -91,35 +93,37 @@ class User(db.Model):
             squared_deviation = deviation * deviation 
             deviations_sum += squared_deviation
         variance = deviations_sum / len(steps_list)
-        return "Manually worked out variance is: {}".format(variance)
+        return "Manually worked out variance is: {:,}".format(variance)
+
+
 
     # find standard deviation in steps. (using numpy: scipy gives a more accurate answer, but I want to use variation as well, and I don't understand scipy's variation. So, for consistency, I'll stick to numpy). Use two decimal places.
     def find_steps_standard_deviation(self):
         steps_list = [entry.steps for entry in self.journal_entries]
         sd = round(np.std(steps_list), 2)
-        return "Standard deviation of steps: {}".format(sd)
+        return "Standard deviation of steps: {:,}".format(sd)
 
     # count total number of times the user has done a given activity (e.g. number of gym visits)
     def count_total_yoga_sessions(self):
         yoga_list = [entry.yoga for entry in self.journal_entries if entry.yoga == True]
         number_of_yoga_sessions = len(yoga_list)
-        return "Total yoga sessions: {}".format(number_of_yoga_sessions)
+        return "Total yoga sessions: {:,}".format(number_of_yoga_sessions)
 
     def count_total_runs(self):
         run_list = [entry.running for entry in self.journal_entries if entry.running == True]
         number_of_runs = len(run_list)
-        return "Total running sessions: {}".format(number_of_runs)
+        return "Total running sessions: {:,}".format(number_of_runs)
 
     def count_total_strength_training_sessions(self):
         strength_list = [entry.strength_training for entry in self.journal_entries if entry.strength_training == True]
         number_of_strength_training_sessions = len(strength_list)
-        return "Total strength training sessions: {}".format(number_of_strength_training_sessions)
+        return "Total strength training sessions: {:,}".format(number_of_strength_training_sessions)
 
 
     def count_total_tai_chi_sessions(self):
         tai_chi_list = [entry.tai_chi for entry in self.journal_entries if entry.tai_chi == True]
         number_of_tai_chi_sessions = len(tai_chi_list)
-        return "Total tai chi sessions: {}".format(number_of_tai_chi_sessions)
+        return "Total tai chi sessions: {:,}".format(number_of_tai_chi_sessions)
 
     # method to find the most common words and/or phrases in the user's descriptions.
 

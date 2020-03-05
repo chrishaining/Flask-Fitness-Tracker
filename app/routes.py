@@ -88,8 +88,8 @@ def edit(entry_id):
     entry.description = new_description
     entry.yoga = yoga
     entry.running = running
-    entry.strength_training = running
-    entry.tai_chi = running
+    entry.strength_training = strength_training
+    entry.tai_chi = tai_chi
     db.session.commit()
     return redirect('/manage')
 
@@ -174,8 +174,8 @@ def edit_multi(entry_id):
     entry.description = new_description
     entry.yoga = yoga
     entry.running = running
-    entry.strength_training = running
-    entry.tai_chi = running
+    entry.strength_training = strength_training
+    entry.tai_chi = tai_chi
     db.session.commit()
     return redirect('/multi')
 
@@ -185,6 +185,6 @@ def show_flask_table():
     entries = JournalEntry.query.all()
     table = ItemTable(entries)
 
-    table.sort_url('steps')
+    step_sort = table.sort_url('tai_chi', reverse=True)
 
-    return render_template('flask_table.html', title="Flask Table", user=user, entries=entries, table=table) 
+    return render_template('flask_table.html', title="Flask Table", user=user, entries=entries, table=table, step_sort=step_sort) 

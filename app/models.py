@@ -176,15 +176,16 @@ class JournalEntry(db.Model):
 # Create a Table class (experimental)
 # Declare your table
 class ItemTable(Table):
+    id = Col('id')
+    date = Col('date')
+    steps = Col('steps')
+    description = Col('description')
+    yoga = Col('yoga')
+    running = Col('running')
+    strength_training = Col('strength_training')
+    tai_chi = Col('tai_chi')
     allow_sort = True
-    id = Col('Id')
-    date = Col('Date')
-    steps = Col('Steps')
-    description = Col('Description')
-    yoga = Col('Yoga')
-    running = Col('Running')
-    strength_training = Col('StrengthTraining')
-    tai_chi = Col('TaiChi')
+
 
     def sort_url(self, col_key, reverse=False):
         if reverse:

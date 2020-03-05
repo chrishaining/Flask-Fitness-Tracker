@@ -85,7 +85,15 @@ def add_multi_entry():
         running = True
     else: 
         running = False
-    newEntry = JournalEntry(date=date, steps=steps, description=description, yoga=yoga, running=running)
+    if 'strength_training' in request.form:
+        strength_training = True
+    else: 
+        strength_training = False
+    if 'tai_chi' in request.form:
+        tai_chi = True
+    else: 
+        tai_chi = False
+    newEntry = JournalEntry(date=date, steps=steps, description=description, yoga=yoga, running=running, strength_training=strength_training, tai_chi=tai_chi)
     db.session.add(newEntry)
     db.session.commit()
     return redirect('/multi')

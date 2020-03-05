@@ -3,6 +3,7 @@ from app.models import User, JournalEntry, datetime
 
 JournalEntry.query.delete()
 User.query.delete()
+ItemTable.query.delete()
 
 user1 = User(first_name="Quazi", last_name="Raytnau")
 db.session.add(user1)
@@ -49,3 +50,10 @@ print(manual_variance)
 # sorto = user1.sort_by_date_two()
 # print(sorto)
 print(user1.count_total_yoga_sessions)
+
+
+# Or, more likely, load items from your database with something like
+items = JournalEntry.query.all()
+
+# Populate the table
+table = ItemTable(items)

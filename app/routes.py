@@ -1,5 +1,5 @@
 from app import app, db
-from app.models import User, JournalEntry
+from app.models import User, JournalEntry, ItemTable
 from flask import render_template, request, redirect
 import random
 from datetime import datetime
@@ -9,7 +9,11 @@ def index():
     greeting = "Welcome"
     user = User.query.get(1)
     entries = JournalEntry.query.all()
-    sorted_entries = user.sort_by_date()
+    # sorted_entries = user.sort_by_date() # This isn't working, so I will sort the data inside the index function rather than call the method from User
+
+    sorted_entries = sorted(entries, key=lambda journalEntry: journalEntry.date)
+    sorted_entries = sorted(entries, key=lambda journalEntry: journalEntry.date, reverse=True)
+
     steps_best_day = user.find_best_day()
     total_steps = user.count_total_steps()
     steps_summary = user.create_five_figure_summary_for_steps()
@@ -174,3 +178,10 @@ def edit_multi(entry_id):
     entry.tai_chi = running
     db.session.commit()
     return redirect('/multi')
+
+@app.route('/flask_table')
+def show_flask_table():
+    user = User.query.get(1)
+    entries = JournalEntry.query.all()
+    table = ItemTable(entries)
+    return render_template('flask_table.html', title="Flask Table", user=user, entries=entries, table=table) 

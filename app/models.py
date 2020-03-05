@@ -3,6 +3,9 @@ import datetime
 from operator import itemgetter
 import numpy as np
 
+# import Flask Tables
+from flask_table import Table, Col
+
 # import statistics modules
 from scipy import stats
 import numpy as np 
@@ -167,3 +170,29 @@ class JournalEntry(db.Model):
     def show_pretty_date(self):
         entry_date = self.date.strftime("%A %d %B %Y")
         return entry_date
+
+
+# Create a Table class (experimental)
+# Declare your table
+class ItemTable(Table):
+    id = Col('Id')
+    date = Col('Date')
+    steps = Col('Steps')
+    description = Col('Description')
+    yoga = Col('Yoga')
+    running = Col('Running')
+    strength_training = Col('StrengthTraining')
+    tai_chi = Col('TaiChi')
+
+# Get some objects
+# class Item(object):
+#     def __init__(self, id, date, steps, description, yoga, running, strength_training, tai_chi):
+#         self.id = id
+#         self.date = date 
+#         self.steps = steps 
+#         self.description = description
+#         self.yoga = yoga 
+#         self.running = running 
+#         self.strength_training = strength_training 
+#         self.tai_chi = tai_chi
+

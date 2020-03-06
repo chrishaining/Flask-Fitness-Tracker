@@ -1,5 +1,17 @@
+.container-fluid {
+    background-color: #EEE2DC
+}
+
 .row {
     margin: 20px;
+}
+
+.edit-row,
+.add-entry-row {
+    border: solid black 2px;
+    background-color: #EDC7B7;
+    margin: 20px;
+    padding: 20px
 }
 
 
@@ -48,6 +60,11 @@ input,
 textarea {
     /* margin: 20px; */
     padding: 10px
+}
+
+.delete-form {
+    background-color: #EDC7B7;
+    border: none
 }
 
 

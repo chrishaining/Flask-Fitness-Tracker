@@ -1,8 +1,10 @@
 from app import app, db
 from app.models import User, JournalEntry, FilterForm
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, jsonify
 import random
 from datetime import datetime
+import json
+import numpy as np
 
 @app.route('/')
 def index():
@@ -174,17 +176,75 @@ def backup_edit(entry_id):
     db.session.commit()
     return redirect('/backup')
 
+@app.route('/backup/<int:entry_id>/delete', methods=['POST'])
+def backup_delete(entry_id):
+    entry = JournalEntry.query.get(entry_id)
+    db.session.delete(entry)
+    db.session.commit()
+    return redirect('/backup')
+
+
 # filter page
 @app.route('/filter', methods=['GET', 'POST'])
-def filter():
-    user = User.query.get(1)
-    entries = JournalEntry.query.all()
+def filter_by_steps():
+
+    def unique(arr):
+        new_list = []
+        for element in arr:
+            if element not in new_list:
+                new_list.append(element)
+        return new_list
+
     form = FilterForm()
     form.steps.choices = [(entry.id, entry.steps) for entry in JournalEntry.query.filter_by(yoga=True).all()]
-    if request.method == 'POST':
-        entry = JournalEntry.query.filter_by(id=form.steps.data).first()
-        return '<h2>{}: number of steps was {}</h2>'.format(form.steps.data, entry.show_pretty_date())
+    # choices = [(entry.id, entry.steps) for entry in JournalEntry.query.filter_by(yoga=True).all()]
+    # choices_two = np.unique(choices)
+    # form.steps.choices = choices_two
+    # form.steps.choices = [entry for entry in JournalEntry.query.filter_by(yoga=True).all()]
 
-    return render_template('filter.html', title="Filter", form=form, user=user, entries=entries)
+    if request.method == 'POST':
+        found_list = JournalEntry.query.filter_by(id=form.steps.data).all()
+        dictionary = {}
+        # counter = 0
+        for item in found_list: 
+            # return '<h2>{}{}</h2>'.format(item.id, item.show_pretty_date())
+
+            # counter += 1
+            dictionary[str(item.id)] = item.steps
+            # counter += 1
+            # dictionary.update( { str(counter): item} )
+            # dictionary[str(counter)] = item
+        # for item in found_list:
+        #     # jsonify(item.serialize())
+        # dictionary['key'] = found_list
+        return '{}'.format(dictionary)
+        # return "Bunny"
+    # return chosen_list
+        # strings = {}
+        # counter = 0
+        # things = []
+        # for item in chosen_list: 
+        #     bob = jsonify(item.serialize())
+        #     counter += 1
+        #     strings.update( { str(counter) : bob} )
+            # strings[str(counter)] = item
+        # res = json.dumps(strings)
+        # return res
+        # list_res = json.dumps(chosen_list)
+        # bob = jsonify(strings.serialize())
+        # return strings
+        # return things
+        # res = jsonify(strings)
+        # res.status_code = 200
+        # return res
+        # return '<ul>{% for thing in strings %}<li>{{thing}}</li></ul>'
+        # return strings
+            # return '<h2>ID {}: date was {}</h2>'.format(form.steps.data, item.show_pretty_date())
+
+            # return '<h2>ID {}: date was {}</h2>'.format(form.steps.data, item.show_pretty_date())
+        # return '<h2>{}: number of steps was {}</h2>'.format(form.steps.data, chosen_entry.show_pretty_date())
+
+    return render_template('filter.html', title="Filter", form=form, unique=unique)
+
 
 

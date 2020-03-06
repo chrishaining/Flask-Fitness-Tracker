@@ -1,5 +1,5 @@
 {% extends "base.html" %} {% block content %}
-<div class='container-fluid'>
+<div class='container'>
     <div class="row">
         <h1>Filter page</h1>
     </div>
@@ -10,11 +10,9 @@
             with the number of steps"</p>
         <form method="POST">
             {{form.csrf_token}}
-            <label>Number of steps</label> {{form.steps}}
+            <label>Number of steps</label> {{unique(form.steps)}}
             <input type="submit" value="Submit your Query">
         </form>
-
-
     </div>
 
 

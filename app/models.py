@@ -172,7 +172,29 @@ class JournalEntry(db.Model):
         entry_date = self.date.strftime("%A %d %B %Y")
         return entry_date
 
+    # attempt to make it json friendly
+    def serialize(self):
+        return {"id": self.id,
+                "date": self.date,
+                "steps": self.steps,
+                "description": self.description,
+                "yoga": self.yoga,
+                "running": self.strength_training,
+                "tai_chi": self.tai_chi
+                }
+
+
+
 # create a form for filtering. It inherits from FlaskForm
 class FilterForm(FlaskForm):
     steps = SelectField('steps', choices=[])
+    # steps = SelectField('steps', choices=np.unique([]))
+
+    # def unique(self, arr):
+    #     for element in arr:
+    #         if element not in self.steps:
+    #             self.steps.append(element)
+    #     return self.steps
+
+
 

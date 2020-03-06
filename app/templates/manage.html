@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% block content %}
 
-<div class='container-fluid'>
+<div class='container'>
     <div class="row">
         <h1>{{title}}</h1>
     </div>
@@ -22,6 +22,8 @@
                         </div>
                         <div class="modal-body">
                             <form action="/manage" method="POST">
+                                <!-- add a hidden input for the csrf token (coz I'm not using a FlaskForm) -->
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
                                 <div class="form-group">
                                     <label for="date">Date</label>
                                     <input type="date" class="form-control" name="date" id="date">
@@ -93,6 +95,8 @@
                                     </div>
                                     <div class="modal-body">
                                         <form method="POST" action="/manage/{{entry.id}}/edit">
+                                            <!-- add a hidden input for the csrf token (coz I'm not using a FlaskForm) -->
+                                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
                                             <div class="form-group">
 
                                                 <label for="id">ID</label>
@@ -154,6 +158,8 @@
                                         <h5>Are you sure?</h5>
                                         <div class="modal-footer">
                                             <form action="{{url_for( 'delete', entry_id=entry.id)}}" method="POST">
+                                                <!-- add a hidden input for the csrf token (coz I'm not using a FlaskForm) -->
+                                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 
                                                 <button type="submit" class="btn btn-primary" value="Delete">Delete
                             </button>

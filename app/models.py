@@ -7,6 +7,10 @@ import numpy as np
 from scipy import stats
 import numpy as np 
 
+# import forms
+from flask_wtf import FlaskForm
+from wtforms import SelectField
+
 # create a user class
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -167,3 +171,8 @@ class JournalEntry(db.Model):
     def show_pretty_date(self):
         entry_date = self.date.strftime("%A %d %B %Y")
         return entry_date
+
+# create a form for filtering. It inherits from FlaskForm
+class FilterForm(FlaskForm):
+    steps = SelectField('steps', choices=[])
+

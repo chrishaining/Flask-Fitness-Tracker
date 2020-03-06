@@ -1,5 +1,5 @@
 from app import app, db
-from app.models import User, JournalEntry
+from app.models import User, JournalEntry, FilterForm
 from flask import render_template, request, redirect
 import random
 from datetime import datetime
@@ -173,3 +173,18 @@ def backup_edit(entry_id):
     entry.tai_chi = tai_chi
     db.session.commit()
     return redirect('/backup')
+
+# filter page
+@app.route('/filter', methods=['GET', 'POST'])
+def filter():
+    user = User.query.get(1)
+    entries = JournalEntry.query.all()
+    form = FilterForm()
+    form.steps.choices = [(entry.id, entry.steps) for entry in JournalEntry.query.filter_by(yoga=True).all()]
+    if request.method == 'POST':
+        entry = JournalEntry.query.filter_by(id=form.steps.data).first()
+        return '<h2>{}: number of steps was {}</h2>'.format(form.steps.data, entry.show_pretty_date())
+
+    return render_template('filter.html', title="Filter", form=form, user=user, entries=entries)
+
+

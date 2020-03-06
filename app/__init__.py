@@ -11,3 +11,9 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db) 
 
 from app import routes, models 
+
+
+from flask_wtf.csrf import CSRFProtect
+
+csrf = CSRFProtect(app)
+app.secret_key = 'titok'

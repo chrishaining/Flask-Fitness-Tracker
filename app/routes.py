@@ -9,7 +9,7 @@ def index():
     greeting = "Welcome"
     user = User.query.get(1)
     entries = JournalEntry.query.all()
-    sorted_entries = user.sort_by_date()
+    # sorted_entries = user.sort_by_date()
     steps_best_day = user.find_best_day()
     total_steps = user.count_total_steps()
     steps_summary = user.create_five_figure_summary_for_steps()
@@ -19,7 +19,7 @@ def index():
     total_runs = user.count_total_runs()
     total_strength = user.count_total_strength_training_sessions()
     total_tai_chi = user.count_total_tai_chi_sessions()
-    return render_template('index.html', title="Home", greeting=greeting, user=user, entries=entries, steps_best_day=steps_best_day, total_steps=total_steps, steps_summary=steps_summary, steps_variance=steps_variance, steps_standard_deviation=steps_standard_deviation, sorted_entries=sorted_entries, total_yoga=total_yoga, total_strength=total_strength, total_runs=total_runs, total_tai_chi=total_tai_chi)
+    return render_template('index.html', title="Home", greeting=greeting, user=user, entries=entries, steps_best_day=steps_best_day, total_steps=total_steps, steps_summary=steps_summary, steps_variance=steps_variance, steps_standard_deviation=steps_standard_deviation, total_yoga=total_yoga, total_strength=total_strength, total_runs=total_runs, total_tai_chi=total_tai_chi)
 
 @app.route('/manage')
 def manage_entries():

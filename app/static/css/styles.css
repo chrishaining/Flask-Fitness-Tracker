@@ -106,3 +106,14 @@ button.btn.btn-primary:hover {
 button.btn.btn-secondary:hover {
     background-color: silver
 }
+
+
+/* tables */
+
+
+/* show arrow icons to indicate that a column is sortable */
+
+table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after {
+    content: " \25B4\25BE";
+    font-size: 20px
+}

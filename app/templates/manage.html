@@ -66,11 +66,12 @@
     <!-- create a table to show all the entries -->
 
     <div class="row">
-        <table class="table table-striped table-bordered">
+        <table class="table table-striped table-bordered sortable">
             <thead>
                 <th>ID</th>
                 <th>Date</th>
-                <th></th>
+                <th class="sorttable_nosort"></th>
+                <th class="sorttable_nosort"></th>
             </thead>
             <tbody>
                 {% for entry in entries%}

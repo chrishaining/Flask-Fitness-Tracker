@@ -84,8 +84,8 @@ def edit(entry_id):
     entry.description = new_description
     entry.yoga = yoga
     entry.running = running
-    entry.strength_training = running
-    entry.tai_chi = running
+    entry.strength_training = strength_training
+    entry.tai_chi = tai_chi
     db.session.commit()
     return redirect('/manage')
 
@@ -170,7 +170,7 @@ def edit_multi(entry_id):
     entry.description = new_description
     entry.yoga = yoga
     entry.running = running
-    entry.strength_training = running
-    entry.tai_chi = running
+    entry.strength_training = strength_training
+    entry.tai_chi = tai_chi
     db.session.commit()
     return redirect('/multi')

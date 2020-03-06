@@ -5,10 +5,13 @@
     </div>
 
     <div class="row">
+        <h2>Filter by number of steps for days you did yoga</h2>
+        <p>Not sure why you'd want to do this, but it was the first filter I thought of. I suppose this would be useful for hypothesis testing, e.g. comparing yoga==true versus yoga==false could help to disprove the hypothesis "Yoga is positively correlated
+            with the number of steps"</p>
         <form method="POST">
-            {{form.csrf_token}} {{form.steps}}
-            <input type="submit">
-
+            {{form.csrf_token}}
+            <label>Number of steps</label> {{form.steps}}
+            <input type="submit" value="Submit your Query">
         </form>
 
 

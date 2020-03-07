@@ -3,6 +3,7 @@ from app.models import User, JournalEntry
 from flask import render_template, request, redirect
 import random
 from datetime import datetime
+from nvd3 import pieChart
 
 @app.route('/')
 def index():
@@ -173,3 +174,24 @@ def backup_edit(entry_id):
     entry.tai_chi = tai_chi
     db.session.commit()
     return redirect('/backup')
+
+
+# charts
+@app.route('/charts')
+def show_charts():
+    output_file = open('test-nvd3.html', 'w')
+    type = 'pieChart'
+    chart = pieChart(name=type, color_category='category20c', height=450, width=450)
+    chart.set_containerheader("\n\n<h2>" + type + "</h2>\n\n")
+
+    xdata = ["Orange", "Banana", "Pear", "Kiwi", "Apple", "Strawberry", "Pineapple"]
+    ydata = [3, 4, 0, 1, 5, 7, 3]
+
+    extra_serie = {"tooltip": {"y_start": "", "y_end": " cal"}}
+    chart.add_serie(y=ydata, x=xdata, extra=extra_serie)
+    chart.buildhtml()
+    output_file.write(chart.htmlcontent)
+
+    # close Html file
+    # output_file.close()
+    return render_template('charts.html', title="Charts", chart=chart, output_file=output_file)

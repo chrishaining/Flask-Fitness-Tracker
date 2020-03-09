@@ -98,13 +98,13 @@ def delete(entry_id):
     return redirect('/manage')
 
 
-@app.route('/multi')
-def multi_entries():
+@app.route('/backup')
+def backup():
     entries = JournalEntry.query.all()
-    return render_template('multi.html', title="Manage Your Multi Entries", entries=entries)
+    return render_template('backup.html', title="Backup Management Page", entries=entries)
 
-@app.route('/multi', methods=['POST'])
-def add_multi_entry():
+@app.route('/backup', methods=['POST'])
+def backup_add():
     raw_date = request.form['date']
     date = datetime.strptime(raw_date, "%Y-%m-%d")
     steps = request.form['steps']
@@ -113,7 +113,6 @@ def add_multi_entry():
         yoga = True
     else: 
         yoga = False
-    # running = request.form['running']
     if 'running' in request.form:
         running = True
     else: 
@@ -129,7 +128,7 @@ def add_multi_entry():
     newEntry = JournalEntry(date=date, steps=steps, description=description, yoga=yoga, running=running, strength_training=strength_training, tai_chi=tai_chi)
     db.session.add(newEntry)
     db.session.commit()
-    return redirect('/multi')
+    return redirect('/backup')
 
 # @app.route('/multi', methods=['POST'])
 # def find_boolean():
@@ -142,8 +141,8 @@ def add_multi_entry():
     # return render_template('multi.html', title="Manage Your Multi Entries", checked=checked)
     # return redirect('/multi')
 
-@app.route('/multi/<int:entry_id>/edit', methods=['POST'])
-def edit_multi(entry_id):
+@app.route('/backup/<int:entry_id>/edit', methods=['POST'])
+def backup_edit(entry_id):
     new_steps = request.form.get("new_steps")
     new_description = request.form.get("new_description")
     entry_id = request.form.get("entry_id")
@@ -173,4 +172,4 @@ def edit_multi(entry_id):
     entry.strength_training = strength_training
     entry.tai_chi = tai_chi
     db.session.commit()
-    return redirect('/multi')
+    return redirect('/backup')

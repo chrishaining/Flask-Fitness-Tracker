@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 html {
     font-family: Lato, Roboto, sans-serif
 }
@@ -17,11 +18,23 @@ h1.alternate:nth-child(even) {
 
 body {
     font-family: Lato, Roboto, sans-serif
+=======
+.container-fluid {
+    background-color: #EEE2DC
+>>>>>>> develop
 }
 
 .row {
     margin: 20px;
     font-family: Lato, Roboto, sans-serif
+}
+
+.edit-row,
+.add-entry-row {
+    border: solid black 2px;
+    background-color: #EDC7B7;
+    margin: 20px;
+    padding: 20px
 }
 
 
@@ -71,6 +84,11 @@ input,
 textarea {
     /* margin: 20px; */
     padding: 10px
+}
+
+.delete-form {
+    background-color: #EDC7B7;
+    border: none
 }
 
 

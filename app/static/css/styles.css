@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-html {
+    <<<<<<< HEAD html {
     font-family: Lato, Roboto, sans-serif
 }
 
@@ -17,144 +16,106 @@ h1.alternate:nth-child(even) {
 }
 
 body {
-    font-family: Lato, Roboto, sans-serif
-=======
-.container-fluid {
-    background-color: #EEE2DC
->>>>>>> develop
-}
-
-.row {
-    margin: 20px;
-    font-family: Lato, Roboto, sans-serif
-}
-
-.edit-row,
-.add-entry-row {
-    border: solid black 2px;
-    background-color: #EDC7B7;
-    margin: 20px;
-    padding: 20px
-}
-
-
-/* nav */
-
-nav {
-    background-color: #123C69;
-    font-family: Lato, Roboto, sans-serif
-}
-
-nav a {
-    color: white;
-    padding: 15px
-}
-
-nav a:hover {
-    color: #AC3B61;
-    text-decoration: none;
-}
-
-.navbar-toggler-icon {
-    color: white;
-    padding-left: 20px;
-    font-size: 200%
-}
-
-.navbar-brand {
-    color: white
-}
-
-.navbar-nav {
-    list-style-type: none;
-}
-
-
-/* forms */
-
-form {
-    background-color: #90CCF4;
-    padding: 20px;
-    margin-top: 20px;
-    border: solid black 2px;
-    border-radius: 5px;
-}
-
-input,
-textarea {
-    /* margin: 20px; */
-    padding: 10px
-}
-
-.delete-form {
-    background-color: #EDC7B7;
-    border: none
-}
-
-
-/* .form-control {
+    font-family: Lato,
+    Roboto,
+    sans-serif .row {
+        margin: 20px;
+        font-family: Lato, Roboto, sans-serif
+    }
+    .edit-row,
+    .add-entry-row {
+        border: solid black 2px;
+        background-color: #EDC7B7;
+        margin: 20px;
+        padding: 20px
+    }
+    /* nav */
+    nav {
+        background-color: #123C69;
+        font-family: Lato, Roboto, sans-serif
+    }
+    nav a {
+        color: white;
+        padding: 15px
+    }
+    nav a:hover {
+        color: #AC3B61;
+        text-decoration: none;
+    }
+    .navbar-toggler-icon {
+        color: white;
+        padding-left: 20px;
+        font-size: 200%
+    }
+    .navbar-brand {
+        color: white
+    }
+    .navbar-nav {
+        list-style-type: none;
+    }
+    /* forms */
+    form {
+        background-color: #90CCF4;
+        padding: 20px;
+        margin-top: 20px;
+        border: solid black 2px;
+        border-radius: 5px;
+    }
+    input,
+    textarea {
+        /* margin: 20px; */
+        padding: 10px
+    }
+    .delete-form {
+        background-color: #EDC7B7;
+        border: none
+    }
+    /* .form-control {
     margin: 20px;
     margin-right: 20px;
     padding-left: 20px;
     padding-right: 20px;
 } */
-
-label {
-    color: black
-}
-
-.btn.btn-link {
-    font-size: 2em;
-    font-weight: bolder;
-    color: black
-}
-
-
-/* modals */
-
-.modal-header {
-    background-color: #5DA2D5
-}
-
-.modal-body {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    background-color: #ECECEC
-}
-
-.modal-title {
-    color: black
-}
-
-button {
-    margin: 10px;
-    background-color: #AC3B61
-}
-
-.btn.btn-secondary {
-    background-color: #AC3B61
-}
-
-.btn.btn-primary {
-    background-color: #AC3B61
-}
-
-button.btn.btn-primary:hover {
-    background-color: silver
-}
-
-button.btn.btn-secondary:hover {
-    background-color: silver
-}
-
-
-/* tables */
-
-
-/* show arrow icons to indicate that a column is sortable */
-
-table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after {
-    content: " \25B4\25BE";
-    font-size: 20px
-}
+    label {
+        color: black
+    }
+    .btn.btn-link {
+        font-size: 2em;
+        font-weight: bolder;
+        color: black
+    }
+    /* modals */
+    .modal-header {
+        background-color: #5DA2D5
+    }
+    .modal-body {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        background-color: #ECECEC
+    }
+    .modal-title {
+        color: black
+    }
+    button {
+        margin: 10px;
+        background-color: #AC3B61
+    }
+    .btn.btn-secondary {
+        background-color: #AC3B61
+    }
+    .btn.btn-primary {
+        background-color: #AC3B61
+    }
+    button.btn.btn-primary:hover {
+        background-color: silver
+    }
+    button.btn.btn-secondary:hover {
+        background-color: silver
+    }
+    /* tables */
+    /* show arrow icons to indicate that a column is sortable */
+    table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after {
+        content: " \25B4\25BE";
+        font-size: 20px
+    }

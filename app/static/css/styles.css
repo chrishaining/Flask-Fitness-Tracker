@@ -1,5 +1,27 @@
+html {
+    font-family: Lato, Roboto, sans-serif
+}
+
+
+/* h1:first-child {
+    color: gold;
+} */
+
+h1.alternate:nth-child(odd) {
+    color: #AC3B61
+}
+
+h1.alternate:nth-child(even) {
+    color: #123C69
+}
+
+body {
+    font-family: Lato, Roboto, sans-serif
+}
+
 .row {
     margin: 20px;
+    font-family: Lato, Roboto, sans-serif
 }
 
 
@@ -7,6 +29,7 @@
 
 nav {
     background-color: #123C69;
+    font-family: Lato, Roboto, sans-serif
 }
 
 nav a {
